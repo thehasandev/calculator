@@ -1,30 +1,51 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 function App() {
+  const [result,setResult] =useState("")
+  
+  const handleResult =()=>{
+    try{
+      setResult(eval(result))
+    }catch(err){
+      setResult("Error")
+    }
+  }
+  const handleClick =(e)=>{
+    setResult(result.concat(e.target.name))
+  }
+  const handleBack =()=>{
+    setResult(result.slice(0,-1))
+  }
+
+
   return (
     <div className='flex justify-center items-center w-full h-screen bg-blue-600'>
-      <div className='w-[350px] bg-white py-24'>
+      <div className='w-[340px] bg-white py-24'>
         <div className='w-full pb-10'>
-          <input type="text" className='w-full border-[1px] border-black/30 py-4 px-2'/>
+          <input value={result}  type="text" className='w-full border-[1px] text-right border-black/30 py-4 px-2'/>
         </div>
-        <div className='flex justify-between px-4 mt-5'>
-         <div className='w-9/12'>
-          <ul className='flex  flex-wrap gap-y-4'>
-            <li className='w-4/12'>AC</li>
-            <li className='w-4/12'>AC</li>
-            <li className='w-4/12'>%</li>
-            <li className='w-4/12'>7</li>
-            <li className='w-4/12'>8</li>
-            <li className='w-4/12'>9</li>
-            <li className='w-4/12'>4</li>
-            <li className='w-4/12'>5</li>
-            <li className='w-4/12'>6</li>
-            <li className='w-4/12'>1</li>
-            <li className='w-4/12'>2</li>
-            <li className='w-4/12'>3</li>
-          </ul>
-         </div>
-         <div className='w-2/12'>sadf</div>
+        <div className='flex flex-wrap gap-x-[40px] gap-y-4 px-5'>
+            <button onClick={()=>{setResult("")}} className='w-8'>AC</button>
+            <button onClick={handleBack} className='w-8'>--b</button>
+            <button onClick={handleClick} className='w-8'>%</button>
+            <button name='/' onClick={handleClick} className='w-8'>/</button>
+            <button name='7' onClick={handleClick} className='w-8'>7</button>
+            <button name='8' onClick={handleClick} className='w-8'>8</button>
+            <button name='9' onClick={handleClick} className='w-8'>9</button>
+            <button name='*' onClick={handleClick} className='w-8'>X</button>
+            <button name='4' onClick={handleClick} className='w-8'>4</button>
+            <button name='5' onClick={handleClick} className='w-8'>5</button>
+            <button name='6' onClick={handleClick} className='w-8'>6</button>
+            <button name='-' onClick={handleClick} className='w-8'>-</button>
+            <button name='1' onClick={handleClick} className='w-8'>1</button>
+            <button name='2' onClick={handleClick} className='w-8'>2</button>
+            <button name='3' onClick={handleClick} className='w-8'>3</button>
+            <button name='+' onClick={handleClick} className='w-8'>+</button>
+            <button name='.' onClick={handleClick} className='w-8'>.</button>
+            <button name='0' onClick={handleClick} className='w-8'>0</button>
+            <button name='.' onClick={handleClick} className='w-8'>.</button>
+            <button onClick={handleResult} className='w-8'>=</button>
+
         </div>
       </div>
     </div>
